@@ -7,7 +7,7 @@ From the Biproject [PRJEB42019](https://www.ebi.ac.uk/ena/browser/view/PRJEB4201
 These metagenomes were downloaded from the ENA using the `nf-core/fetchngs` Nextflow pipeline, which was launched on Tower with:
 
 ```
-nextflow run 'https://github.com/nf-core/fetchngs
+nextflow run 'https://github.com/nf-core/fetchngs'
     -name EMP500_download
     -profile docker
     -with-tower
@@ -19,8 +19,6 @@ nextflow run 'https://github.com/nf-core/fetchngs
 ```
 
 The `nf_core_pipeline` parameter outputs a samplesheet compliant with the `nf-core/taxprofiler` pipeline, which of the options is the closest pipeline that creates a samplesheet that we will need for tracking metadata and inputting into the `Arcadia-Science/metagenomics` workflow. This samplesheet is the `metadata/EMP500_fetchngs_samplesheet.csv` file.
-
-```
 
 ## Process EMP500 Metagenomes
 
