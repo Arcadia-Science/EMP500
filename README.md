@@ -21,5 +21,17 @@ nextflow run 'https://github.com/nf-core/fetchngs'
 The `nf_core_pipeline` parameter outputs a samplesheet compliant with the `nf-core/taxprofiler` pipeline, which of the options is the closest pipeline that creates a samplesheet that we will need for tracking metadata and inputting into the `Arcadia-Science/metagenomics` workflow. This samplesheet is the `metadata/EMP500_fetchngs_samplesheet.csv` file.
 
 ## Process EMP500 Metagenomes
+A subset of the EMP500 metagenomes were analyzed from the `activated sludge` biome by filtering for accessions named `activated sludge metagenome`. These were then processed using the Arcadia-Science/metagenomics Nextflow workflow with
 
+```
+nextflow run 'https:/github.com/Arcadia-Science/metagenomics'
+    -name EMP500_activated_sludge
+    -profile docker
+    -with-tower
+    -r main
+    -input EMP500-AS-s3-uris.csv
+    -outdir s3://nf-metagenomics/EMP500/activated_sludge
+    -sourmash_dbs s3://nf-metagenomics/sourmash-cover-dbs.csv
+```
 ## Analyze EMP500 Metagenomes
+The assemblies and sourmash files were pulled down from the output of the workflow. Sourmash signatures, compare results, gather results, and taxannotate results were analyzed using the `sourmashconsumr` R package with the script `scripts/emp_activated_sludge_sourmashconsumr_analysis.R`
